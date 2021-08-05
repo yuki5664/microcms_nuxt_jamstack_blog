@@ -15,7 +15,7 @@
         <v-card 
         v-for="content in contents" 
         :key="content.id"
-        class="mx-auto my-6"
+        class="mx-auto my-6 hover"
         max-width="800">
           <nuxt-link 
           :to="`/${content.id}`"
@@ -67,3 +67,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .hover:hover {
+    transition: .3s;
+    opacity: 0.5;
+  }
+</style>
