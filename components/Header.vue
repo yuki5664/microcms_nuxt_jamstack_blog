@@ -4,6 +4,7 @@
     color="white"
     flat
   >
+    <img src="~/assets/title_logo.png" alt="" width="8%" height="140%" class="mt-5">
     <v-tabs
       centered
       class="ml-n9"
@@ -16,8 +17,12 @@
         {{ link }}
       </v-tab>
     </v-tabs>
-    <v-icon size="32" class="pr-2">mdi-twitter</v-icon>
-    <v-icon size="32" class="pr-2">mdi-github</v-icon>
+    <v-btn icon class="mr-2">
+      <v-icon size="32">mdi-twitter</v-icon>
+    </v-btn>
+    <v-btn icon class="mr-2">
+      <v-icon size="32" >mdi-github</v-icon>
+    </v-btn>
   </v-app-bar>
 </template>
 
