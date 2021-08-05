@@ -21,7 +21,7 @@
           :to="`/${content.id}`"
           tag="div"
           class="c-p"> 
-            <v-container :elevation="hover ? 12 : 2" :class="{ 'on-hover': hover }">
+            <v-container>
               <p> {{ content.publishedAt | dateFilter }} </p>
               <v-row>
                 <v-col cols="4">
