@@ -25,13 +25,15 @@
               <p> {{ content.publishedAt | dateFilter }} </p>
               <v-row>
                 <v-col cols="4">
-                  <v-img
-                    :src="content.ogimage.url"
-                    class="ogimage m-6"
-                    max-height="100"
-                    max-width="200"
-                    alt=""
-                  />
+                  <picture v-if="content.ogimage">
+                    <v-img
+                      :src="content.ogimage.url"
+                      class="ogimage m-6"
+                      max-height="100"
+                      max-width="200"
+                      alt=""
+                    />
+                  </picture>
                 </v-col>
                 <v-col cols="8">
                   <v-card-title>
