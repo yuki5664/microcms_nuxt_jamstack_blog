@@ -15,13 +15,13 @@
         <v-card 
         v-for="content in contents" 
         :key="content.id"
-        class="mx-auto my-6"
+        class="mx-auto my-6 hover"
         max-width="800">
           <nuxt-link 
           :to="`/${content.id}`"
           tag="div"
           class="c-p"> 
-            <v-container :elevation="hover ? 12 : 2" :class="{ 'on-hover': hover }">
+            <v-container>
               <p> {{ content.publishedAt | dateFilter }} </p>
               <v-row>
                 <v-col cols="4">
@@ -67,3 +67,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .hover:hover {
+    transition: .3s;
+    opacity: 0.5;
+  }
+</style>
