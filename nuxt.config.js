@@ -7,6 +7,15 @@ export default {
     apiKey: process.env.API_KEY,
     // serviceId: SERVICE_ID,
   },
+  router: {
+    extendRoutes(routes, resolve) {
+      routes.push({
+        path: '/page/:p',
+        component: resolve(__dirname, 'pages/index.vue'),
+        name: 'page',
+      })
+    },
+  },
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
