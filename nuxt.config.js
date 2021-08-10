@@ -13,6 +13,11 @@ export default {
         path: '/page/:p',
         component: resolve(__dirname, 'pages/index.vue'),
         name: 'page',
+      });
+      routes.push({
+        path: '/category/:categoryId/page/:p',
+        component: resolve(__dirname, 'pages/index.vue'),
+        name: 'category',
       })
     },
   },
@@ -76,7 +81,32 @@ export default {
             route: `/page/${p}`,
           }))
         )
-      return pages
+
+        const categories = await axios
+        .get(`https://your-service-id.microcms.io/api/v1/categories?fields=id`, {
+          headers: { 'X-API-KEY': 'your-api-key' },
+        })
+        .then(({ data }) => {
+          return data.contents.map((content) => content.id)
+        });
+
+        // カテゴリーページのページング
+        const categoryPages = await Promise.all(
+          categories.map((category) =>
+            axios.get(
+              `https://your-service-id.microcms.io/api/v1/blog?limit=0&filters=category[equals]${category}`,
+              { headers: { 'X-API-KEY': 'your-api-key' } }
+            )
+              .then((res) =>
+              range(1, Math.ceil(res.data.totalCount / 10)).map((p) => ({
+              route: `/category/${category}/page/${p}`,
+              })))
+        )
+      )
+
+      // 2次元配列になってるのでフラットにする
+      const flattenCategoryPages = [].concat.apply([], categoryPages)
+      return [...pages, ...flattenCategoryPages]
     },
-  }
+  },
 }

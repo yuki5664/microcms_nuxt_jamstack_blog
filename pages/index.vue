@@ -56,9 +56,12 @@ import moment from 'moment'
 export default {
   async asyncData({params, $config}) {
     const page = params.p || '1'
+    const categoryId = params.categoryId
     const limit = 10
     const { data } = await axios.get(
-      `https://nuxt-tutorial-blog.microcms.io/api/v1/blog?limit=${limit}&offset=${(page - 1) * limit}`,
+      `https://nuxt-tutorial-blog.microcms.io/api/v1/blog?limit=${limit}${
+        categoryId === undefined ? '' : `&filters=category[equals]${categoryId}`
+      }&offset=${(page - 1) * limit}`,
       {
         headers: {'X-API-KEY': $config.apiKey }
       }
