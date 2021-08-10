@@ -4,7 +4,7 @@
     <v-main>
       <v-container>
         <v-parallax 
-        :src="require('@/assets/surf.png')"
+        src="/images/surf.png"
         class="bg"></v-parallax>
         <v-row>
           <h1 class="text-h2 mb-4 mt-12 mx-auto">MY BLOG</h1>
@@ -25,13 +25,15 @@
               <p> {{ content.publishedAt | dateFilter }} </p>
               <v-row>
                 <v-col cols="4">
-                  <v-img
-                    :src="content.ogimage.url"
-                    class="ogimage m-6"
-                    max-height="100"
-                    max-width="200"
-                    alt=""
-                  />
+                  <picture v-if="content.ogimage">
+                    <v-img
+                      :src="content.ogimage.url"
+                      class="ogimage m-6"
+                      max-height="100"
+                      max-width="200"
+                      alt=""
+                    />
+                  </picture>
                 </v-col>
                 <v-col cols="8">
                   <v-card-title>
@@ -42,6 +44,11 @@
             </v-container>
           </nuxt-link>
         </v-card>
+        <Pagination 
+          :contents="contents"
+          :pager="pager"
+          :current="Number(page)"
+          :category="selectedCategory"/>
       </v-container>
     </v-main>
   </v-app>
@@ -51,14 +58,43 @@
 import axios from 'axios'
 import moment from 'moment'
 export default {
-  async asyncData( {$config } ) {
+  async asyncData({params, $config}) {
+    const page = params.p || '1'
+    const categoryId = params.categoryId
+    const limit = 1
     const { data } = await axios.get(
-      'https://nuxt-tutorial-blog.microcms.io/api/v1/blog',
+      `https://${$config.serviceId}.microcms.io/api/v1/blog?limit=${limit}${
+        categoryId === undefined ? '' : `&filters=category[equals]${categoryId}`
+      }&offset=${(page - 1) * limit}`,
       {
         headers: {'X-API-KEY': $config.apiKey }
       }
-    )
-    return data
+    );
+    const categories = await axios.get(
+      `https://${$config.serviceId}.microcms.io/api/v1/categories?limit=100`,
+      {
+        headers: { 'X-API-KEY': $config.apiKey },
+      }
+    );
+    const selectedCategory =
+      categoryId !== undefined
+        ? categories.data.contents.find((content) => content.id === categoryId)
+        : undefined;
+    return {
+      ...data,
+      categories: categories.data.contents,
+      selectedCategory,
+      page,
+      // 最大のページ数を取得
+      pager: [...Array(Math.ceil(data.totalCount / limit)).keys()],
+    };
+  },
+  data() {
+    return {
+      contents: this.contents || [],
+      totalCount: this.totalCount || 0,
+      pager: this.pager || [],
+    };
   },
   filters: {
     dateFilter: function(date) {

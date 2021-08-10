@@ -4,7 +4,7 @@
     color="white"
     flat
   >
-    <img src="~/assets/title_logo.png" alt="" width="8%" height="140%" class="mt-5">
+    <img src="/images/title_logo.png" alt="" width="8%" height="140%" class="mt-5">
     <v-tabs
       centered
       class="ml-n9"
