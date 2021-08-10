@@ -1,5 +1,5 @@
 <template>
-  <div v-if="contents.length > 0" class="wrapper">
+  <div v-if="contents.length > 10" class="wrapper">
     <div class="pager">
       <v-btn v-if="current > 1" class="page">
         <nuxt-link
