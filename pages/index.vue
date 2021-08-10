@@ -44,6 +44,7 @@
             </v-container>
           </nuxt-link>
         </v-card>
+        <Pagination />
       </v-container>
     </v-main>
   </v-app>
@@ -53,16 +54,28 @@
 import axios from 'axios'
 import moment from 'moment'
 export default {
-  async asyncData({params, $config }) {
+  async asyncData({params, $config}) {
     const page = params.p || '1'
     const limit = 10
     const { data } = await axios.get(
-      'https://nuxt-tutorial-blog.microcms.io/api/v1/blog?limit=${limit}&offset=${(page - 1) * limit}',
+      `https://nuxt-tutorial-blog.microcms.io/api/v1/blog?limit=${limit}&offset=${(page - 1) * limit}`,
       {
         headers: {'X-API-KEY': $config.apiKey }
       }
     )
-    return data
+    return {
+      ...data,
+      page,
+      // 最大のページ数を取得
+      pager: [...Array(Math.ceil(data.totalCount / limit)).keys()],
+    };
+  },
+  data() {
+    return {
+      contents: this.contents || [],
+      totalCount: this.totalCount || 0,
+      pager: this.pager || [],
+    };
   },
   filters: {
     dateFilter: function(date) {
