@@ -4,7 +4,7 @@
     <v-main>
       <v-container>
         <v-parallax 
-        :src="require('@/assets/surf.png')"
+        src="/images/surf.png"
         class="bg"></v-parallax>
         <v-row>
           <h1 class="text-h2 mb-4 mt-12 mx-auto">MY BLOG</h1>
@@ -44,7 +44,11 @@
             </v-container>
           </nuxt-link>
         </v-card>
-        <Pagination />
+        <Pagination 
+          :contents="contents"
+          :pager="pager"
+          :current="Number(page)"
+          :category="selectedCategory"/>
       </v-container>
     </v-main>
   </v-app>
@@ -57,7 +61,7 @@ export default {
   async asyncData({params, $config}) {
     const page = params.p || '1'
     const categoryId = params.categoryId
-    const limit = 10
+    const limit = 1
     const { data } = await axios.get(
       `https://nuxt-tutorial-blog.microcms.io/api/v1/blog?limit=${limit}${
         categoryId === undefined ? '' : `&filters=category[equals]${categoryId}`
@@ -65,9 +69,21 @@ export default {
       {
         headers: {'X-API-KEY': $config.apiKey }
       }
-    )
+    );
+    const categories = await axios.get(
+      `https://nuxt-tutorial-blog.microcms.io/api/v1/categories?limit=100`,
+      {
+        headers: { 'X-API-KEY': $config.apiKey },
+      }
+    );
+    const selectedCategory =
+      categoryId !== undefined
+        ? categories.data.contents.find((content) => content.id === categoryId)
+        : undefined;
     return {
       ...data,
+      categories: categories.data.contents,
+      selectedCategory,
       page,
       // 最大のページ数を取得
       pager: [...Array(Math.ceil(data.totalCount / limit)).keys()],
