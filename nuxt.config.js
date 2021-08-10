@@ -1,11 +1,11 @@
 export default {
   publicRuntimeConfig: {
     apiKey: process.env.NODE_ENV !== 'production' ? process.env.API_KEY : undefined,
-    // serviceId: process.env.NODE_ENV !== 'production' ? SERVICE_ID : undefined,
+    serviceId: process.env.NODE_ENV !== 'production' ? process.env.SERVICE_ID : undefined,
   },
   privateRuntimeConfig: {
     apiKey: process.env.API_KEY,
-    // serviceId: SERVICE_ID,
+    serviceId: process.env.SERVICE_ID,
   },
   router: {
     extendRoutes(routes, resolve) {

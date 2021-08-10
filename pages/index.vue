@@ -63,7 +63,7 @@ export default {
     const categoryId = params.categoryId
     const limit = 1
     const { data } = await axios.get(
-      `https://nuxt-tutorial-blog.microcms.io/api/v1/blog?limit=${limit}${
+      `https://${$config.serviceId}.microcms.io/api/v1/blog?limit=${limit}${
         categoryId === undefined ? '' : `&filters=category[equals]${categoryId}`
       }&offset=${(page - 1) * limit}`,
       {
@@ -71,7 +71,7 @@ export default {
       }
     );
     const categories = await axios.get(
-      `https://nuxt-tutorial-blog.microcms.io/api/v1/categories?limit=100`,
+      `https://${$config.serviceId}.microcms.io/api/v1/categories?limit=100`,
       {
         headers: { 'X-API-KEY': $config.apiKey },
       }

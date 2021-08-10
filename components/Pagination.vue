@@ -8,7 +8,7 @@
           }page/${current - 1}`"
           tag="div"
           class="c-p">
-          <img src="/images/icon_arrow_left.svg" alt="前のページへ" />
+          <v-icon size="18" alt="前のページへ">mdi-arrow-left</v-icon>
         </nuxt-link>
       </v-btn>
         <nuxt-link
@@ -62,7 +62,7 @@
         tag="div"
         class="c-p">
         <v-btn v-if="current < pager.length" class="page arrow">
-          <img src="/images/icon_arrow_right.svg" alt="次のページへ" />
+          <v-icon size="18" alt="次のページへ">mdi-arrow-right</v-icon>
         </v-btn>
       </nuxt-link>
     </div>
