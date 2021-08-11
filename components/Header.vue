@@ -4,7 +4,7 @@
     color="white"
     flat
   >
-    <img src="/images/title_logo.png" alt="" width="8%" height="140%" class="mt-5">
+    <img src="/images/title_logo.png" alt="" width="120" height="100" class="mt-10">
     <v-tabs
       centered
       class="ml-n9"
@@ -17,12 +17,16 @@
         {{ link }}
       </v-tab>
     </v-tabs>
-    <v-btn icon class="mr-2">
-      <v-icon size="32">mdi-twitter</v-icon>
-    </v-btn>
-    <v-btn icon class="mr-2">
-      <v-icon size="32" >mdi-github</v-icon>
-    </v-btn>
+    <a href="https://twitter.com/tanayu7777" target="_blank">
+      <v-btn icon class="mr-2">
+        <v-icon size="32">mdi-twitter</v-icon>
+      </v-btn>
+    </a>
+    <a href="https://github.com/yuki5664" target="_blank">
+      <v-btn icon class="mr-2">
+        <v-icon size="32" >mdi-github</v-icon>
+      </v-btn>
+    </a>
   </v-app-bar>
 </template>
 
@@ -30,10 +34,16 @@
   export default {
     data: () => ({
       links: [
-        'Home',
+        'Blog',
         'Profile',
         'Message',
       ],
     }),
   }
 </script>
+
+<style scoped>
+  a {
+    text-decoration: none;
+  }
+</style>
