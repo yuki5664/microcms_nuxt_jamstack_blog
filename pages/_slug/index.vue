@@ -1,9 +1,12 @@
 <template>
-  <main class='main'>
-    <h1 class="title">{{ title }}</h1>
-    <p class="publishedAd">{{ publishedAt }}</p>
-    <div class="post" v-html="body"></div>
-  </main>
+  <v-app>
+    <Header />
+    <main class='main'>
+      <h1 class="title">{{ title }}</h1>
+      <p class="publishedAd">{{ publishedAt }}</p>
+      <div class="post" v-html="body"></div>
+    </main>
+  </v-app>
 </template>
 
 <script>
