@@ -4,7 +4,9 @@
     color="white"
     flat
   >
-    <img src="/images/title_logo.png" alt="" width="120" height="100" class="mt-10">
+    <nuxt-link :to="`/`">
+      <img src="images/title_logo.png" alt="" width="100" height="100" class="mt-10">
+    </nuxt-link>
     <v-tabs
       centered
       class="ml-n9"
@@ -13,6 +15,8 @@
       <v-tab
         v-for="link in links"
         :key="link"
+        :to="`/` + `${link !== 'Blog' ? link : ``}`"
+        :nuxt=true
       >
         {{ link }}
       </v-tab>
