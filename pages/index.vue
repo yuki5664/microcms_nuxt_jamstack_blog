@@ -12,12 +12,12 @@
         <div v-show="contents.length === 0" class="loader">
             記事がありません
         </div>
-        <v-row>
+        <v-row class="my-6">
           <v-col cols="9">
             <v-card
             v-for="content in contents"
             :key="content.id"
-            class="mx-auto my-6 hover"
+            class="mx-auto hover"
             max-width="800">
               <nuxt-link
               :to="`/${content.id}`"
@@ -53,7 +53,9 @@
               :category="selectedCategory"/>
             </v-col>
             <v-col cols="3">
-              <h1>ここにカテゴリーが入る</h1>
+              <aside>
+                <Categories :categories="categories" />
+              </aside>
             </v-col>
           </v-row>
       </v-container>
