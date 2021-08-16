@@ -22,23 +22,6 @@
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-nuxt": "^2.0.0",
-    "husky": "^7.0.1",
-    "lint-staged": "^11.1.2",
     "prettier": "^1.19.1"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "git add"
-    ],
-    "*.vue": [
-      "eslint --ext .vue --fix",
-      "git add"
-    ]
   }
 }
