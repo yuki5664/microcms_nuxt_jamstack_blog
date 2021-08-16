@@ -7,7 +7,7 @@
         <h4 class="text-center">
           新宿のベンチャーでwebエンジニアやってます！<br>趣味はサーフィン！
         </h4>
-      </v-container////>
+      </v-container>
     </v-main>
   </v-app>
 </template>

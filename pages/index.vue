@@ -57,7 +57,7 @@
               :current="Number(page)"
               :category="selectedCategory"
             />
-          </v-col>
+          </v-col/>
           <v-col cols="3">
             <aside>
               <Categories :categories="categories" />
