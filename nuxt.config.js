@@ -13,7 +13,7 @@ export default {
         path: '/page/:p',
         component: resolve(__dirname, 'pages/index.vue'),
         name: 'page',
-      });
+      })
       routes.push({
         path: '/category/:categoryId/page/:p',
         component: resolve(__dirname, 'pages/index.vue'),
@@ -88,7 +88,7 @@ export default {
         })
         .then(({ data }) => {
           return data.contents.map((content) => content.id)
-        });
+        })
 
         // カテゴリーページのページング
         const categoryPages = await Promise.all(

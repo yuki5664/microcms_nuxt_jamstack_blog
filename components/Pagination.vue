@@ -7,36 +7,42 @@
             category !== undefined ? `category/${category.id}/` : ''
           }page/${current - 1}`"
           tag="div"
-          class="c-p">
-          <v-icon size="18" alt="前のページへ">mdi-arrow-left</v-icon>
+          class="c-p"
+        >
+          <v-icon size="18" alt="前のページへ">
+            mdi-arrow-left
+          </v-icon>
         </nuxt-link>
       </v-btn>
-        <nuxt-link
-          :to="`/${
-            category !== undefined ? `category/${category.id}/` : ''
-          }page/1`"
-          tag="div"
-          class="c-p">
-          <v-btn v-if="3 < current" class="page">
-            1
-          </v-btn>
-        </nuxt-link>
+      <nuxt-link
+        :to="`/${
+          category !== undefined ? `category/${category.id}/` : ''
+        }page/1`"
+        tag="div"
+        class="c-p"
+      >
+        <v-btn v-if="3 < current" class="page">
+          1
+        </v-btn>
+      </nuxt-link>
       <div v-if="4 < current" class="omission">
         ...
       </div>
       
       <div
-      v-for="p in pager"
-      v-show="current - 3 <= p && p <= current + 1"
-      :key="p"
-      class="page"
-      :class="{ active: current === p + 1 }">
+        v-for="p in pager"
+        v-show="current - 3 <= p && p <= current + 1"
+        :key="p"
+        class="page"
+        :class="{ active: current === p + 1 }"
+      >
         <nuxt-link
-        :to="`/${
-          category !== undefined ? `category/${category.id}/` : ''
-        }page/${p + 1}`"
-        tag="div"
-        class="c-p">
+          :to="`/${
+            category !== undefined ? `category/${category.id}/` : ''
+          }page/${p + 1}`"
+          tag="div"
+          class="c-p"
+        >
           <v-btn>
             {{ p + 1 }}
           </v-btn>
@@ -50,7 +56,8 @@
           category !== undefined ? `category/${category.id}/` : ''
         }page/${pager.length}`"
         tag="div"
-        class="c-p">
+        class="c-p"
+      >
         <v-btn v-if="current + 2 < pager.length" class="page">
           {{ pager.length }}
         </v-btn>
@@ -60,9 +67,12 @@
           category !== undefined ? `category/${category.id}/` : ''
         }page/${current + 1}`"
         tag="div"
-        class="c-p">
+        class="c-p"
+      >
         <v-btn v-if="current < pager.length" class="page arrow">
-          <v-icon size="18" alt="次のページへ">mdi-arrow-right</v-icon>
+          <v-icon size="18" alt="次のページへ">
+            mdi-arrow-right
+          </v-icon>
         </v-btn>
       </nuxt-link>
     </div>
@@ -92,7 +102,7 @@ export default {
       default: undefined,
     },
   },
-};
+}
 </script>
 
 <style scoped>
