@@ -16,8 +16,7 @@
         v-for="link in links"
         :key="link"
         :to="`/` + `${link !== 'Blog' ? link : ``}`"
-        :nuxt="true"
-      >
+        :nuxt="true">
         {{ link }}
       </v-tab>
     </v-tabs>
