@@ -12,43 +12,52 @@
         <div v-show="contents.length === 0" class="loader">
             記事がありません
         </div>
-        <v-card 
-        v-for="content in contents" 
-        :key="content.id"
-        class="mx-auto my-6 hover"
-        max-width="800">
-          <nuxt-link 
-          :to="`/${content.id}`"
-          tag="div"
-          class="c-p"> 
-            <v-container>
-              <p> {{ content.publishedAt | dateFilter }} </p>
-              <v-row>
-                <v-col cols="4">
-                  <picture v-if="content.ogimage">
-                    <v-img
-                      :src="content.ogimage.url"
-                      class="ogimage m-6"
-                      max-height="100"
-                      max-width="200"
-                      alt=""
-                    />
-                  </picture>
-                </v-col>
-                <v-col cols="8">
-                  <v-card-title>
-                    {{ content.title }}
-                  </v-card-title>
-                </v-col>
-              </v-row>
-            </v-container>
-          </nuxt-link>
-        </v-card>
-        <Pagination 
-          :contents="contents"
-          :pager="pager"
-          :current="Number(page)"
-          :category="selectedCategory"/>
+        <v-row class="my-6">
+          <v-col cols="9">
+            <v-card
+            v-for="content in contents"
+            :key="content.id"
+            class="mx-auto hover"
+            max-width="800">
+              <nuxt-link
+              :to="`/${content.id}`"
+              tag="div"
+              class="c-p">
+                <v-container>
+                  <p> {{ content.publishedAt | dateFilter }} </p>
+                  <v-row>
+                    <v-col cols="4">
+                      <picture v-if="content.ogimage">
+                        <v-img
+                          :src="content.ogimage.url"
+                          class="ogimage m-6"
+                          max-height="100"
+                          max-width="200"
+                          alt=""
+                        />
+                      </picture>
+                    </v-col>
+                    <v-col cols="8">
+                      <v-card-title>
+                        {{ content.title }}
+                      </v-card-title>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </nuxt-link>
+            </v-card>
+            <Pagination
+              :contents="contents"
+              :pager="pager"
+              :current="Number(page)"
+              :category="selectedCategory"/>
+            </v-col>
+            <v-col cols="3">
+              <aside>
+                <Categories :categories="categories" />
+              </aside>
+            </v-col>
+          </v-row>
       </v-container>
     </v-main>
   </v-app>
