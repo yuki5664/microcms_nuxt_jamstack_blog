@@ -17,7 +17,7 @@
             <v-card
             v-for="content in contents"
             :key="content.id"
-            class="mx-auto hover"
+            class="mx-auto mb-6 hover"
             max-width="800">
               <nuxt-link
               :to="`/${content.id}`"
