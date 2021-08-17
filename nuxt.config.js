@@ -76,7 +76,7 @@ export default {
       // 一覧のページング
       const pages = await axios
         .get(`https://your-service-id.microcms.io/api/v1/blog?limit=0`, {
-          headers: { 'X-API-KEY': API_KEY },
+          headers: { 'X-API-KEY': process.env.API_KEY },
         })
         .then((res) =>
           range(1, Math.ceil(res.data.totalCount / limit)).map((p) => ({
@@ -97,7 +97,7 @@ export default {
           categories.map((category) =>
             axios.get(
               `https://your-service-id.microcms.io/api/v1/blog?limit=0&filters=category[equals]${category}`,
-              { headers: { 'X-API-KEY': 'your-api-key' } }
+              { headers: { 'X-API-KEY': process.env.API_KEY } }
             )
               .then((res) =>
               range(1, Math.ceil(res.data.totalCount / 10)).map((p) => ({
