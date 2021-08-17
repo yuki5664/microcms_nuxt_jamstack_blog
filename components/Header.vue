@@ -16,8 +16,7 @@
         v-for="link in links"
         :key="link"
         :to="`/` + `${link !== 'Blog' ? link : ``}`"
-        :nuxt=true
-      >
+        :nuxt="true">
         {{ link }}
       </v-tab>
     </v-tabs>
@@ -28,7 +27,7 @@
     </a>
     <a href="https://github.com/yuki5664" target="_blank">
       <v-btn icon class="mr-2">
-        <v-icon size="32" >mdi-github</v-icon>
+        <v-icon size="32">mdi-github</v-icon>
       </v-btn>
     </a>
   </v-app-bar>
