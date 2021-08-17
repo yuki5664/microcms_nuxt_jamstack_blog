@@ -74,7 +74,7 @@ import axios from 'axios'
 import moment from 'moment'
 export default {
   filters: {
-    dateFilter: function(date) {
+    dateFilter(date) {
       return moment(date).format('YYYY/MM/DD')
     }
   },
