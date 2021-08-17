@@ -56,8 +56,18 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    '@nuxtjs/vuetify',
+    '@nuxt/typescript-build',
+    '@nuxtjs/vuetify'
   ],
+
+  // setting typescript typecheck
+  typescript: {
+    typeCheck: {
+      eslint: {
+        files: './**/*.{ts,vue}',
+      },
+    },
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
