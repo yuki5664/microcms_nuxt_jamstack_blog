@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 export default {
   publicRuntimeConfig: {
     apiKey: process.env.NODE_ENV !== 'production' ? process.env.API_KEY : undefined,
