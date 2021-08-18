@@ -20,8 +20,10 @@
   </v-card>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from 'vue'
+
+export default Vue.extend({
   props: {
     categories: {
       type: Array,
@@ -29,5 +31,5 @@ export default {
       default: () => [],
     },
   },
-}
+})
 </script>
