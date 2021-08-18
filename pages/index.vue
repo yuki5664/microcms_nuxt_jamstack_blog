@@ -69,17 +69,20 @@
   </v-app>
 </template>
 
-<script>
+<script lang="ts">
 import axios from 'axios'
 import moment from 'moment'
-export default {
+import Vue from 'vue'
+import { Context } from '@nuxt/types'
+
+export default Vue.extend({
   filters: {
-    dateFilter(date) {
+    dateFilter(date: string): string {
       return moment(date).format('YYYY/MM/DD')
     }
   },
-  async asyncData({params, $config}) {
-    const page = params.p || '1'
+  async asyncData({params, $config}: Context) {
+    const page: any = params.p || '1'
     const categoryId = params.categoryId
     const limit = 10
     const { data } = await axios.get(
@@ -98,7 +101,7 @@ export default {
     )
     const selectedCategory =
       categoryId !== undefined
-        ? categories.data.contents.find((content) => content.id === categoryId)
+        ? categories.data.contents.find((content: any) => content.id===categoryId)
         : undefined
     return {
       ...data,
@@ -111,12 +114,12 @@ export default {
   },
   data() {
     return {
-      contents: this.contents || [],
-      totalCount: this.totalCount || 0,
-      pager: this.pager || [],
+      contents: (this as any).contents || [],
+      totalCount: (this as any).totalCount || 0,
+      pager: (this as any).pager || [],
     }
   }
-}
+})
 </script>
 
 <style scoped>

@@ -79,8 +79,10 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from 'vue'
+
+export default Vue.extend({
   props: {
     contents: {
       type: Array,
@@ -102,7 +104,7 @@ export default {
       default: undefined,
     },
   },
-}
+})
 </script>
 
 <style scoped>

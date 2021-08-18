@@ -13,11 +13,13 @@
   </v-app>
 </template>
 
-<script>
+<script lang="ts">
 import axios from 'axios'
+import Vue from 'vue'
+import { Context } from '@nuxt/types'
 
-export default {
-  async asyncData({ params, $config }) {
+export default Vue.extend({
+  async asyncData({ params, $config }: Context) {
     const { data } = await axios.get(
       `https://${$config.serviceId}.microcms.io/api/v1/blog/${params.slug}`,
       {
@@ -26,5 +28,5 @@ export default {
     )
     return data
   }
-}
+})
 </script>

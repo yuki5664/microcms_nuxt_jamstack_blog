@@ -33,16 +33,18 @@
   </v-app-bar>
 </template>
 
-<script>
-  export default {
-    data: () => ({
-      links: [
-        'Blog',
-        'Profile',
-        'Message',
-      ],
-    }),
-  }
+<script lang="ts">
+import Vue from 'vue'
+
+export default Vue.extend({
+  data: () => ({
+    links: [
+      'Blog',
+      'Profile',
+      'Message',
+    ],
+  }),
+})
 </script>
 
 <style scoped>
