@@ -1,15 +1,49 @@
 <template>
   <v-app>
     <Header />
-    <main class="main">
-      <h1 class="title">
-        {{ title }}
-      </h1>
-      <p class="publishedAd">
-        {{ publishedAt }}
-      </p>
-      <div class="post"></div>
-    </main>
+    <v-main class="main">
+      <v-container>
+        <v-row>
+          <picture v-if="ogimage" class="mx-auto">
+            <source
+              media="(min-width: 1160px)"
+              type="image/webp"
+              :srcset="`${ogimage.url}?w=820&fm=webp, ${ogimage.url}?w=1640&fm=webp 2x`"
+            />
+            <source
+              media="(min-width: 820px)"
+              type="image/webp"
+              :srcset="`${ogimage.url}?w=740&fm=webp, ${ogimage.url}?w=1480&fm=webp 2x`"
+            />
+            <source
+              media="(min-width: 768px)"
+              type="image/webp"
+              :srcset="`${ogimage.url}?w=728&fm=webp, ${ogimage.url}?w=1456&fm=webp 2x`"
+            />
+            <source
+              media="(max-width: 768px)"
+              type="image/webp"
+              :srcset="`${ogimage.url}?w=375&fm=webp, ${ogimage.url}?w=750&fm=webp 2x`"
+            />
+            <img
+              ref="ogimage"
+              :src="ogimage.url + '?w=820&q=100'"
+              class="ogimage"
+              alt
+            />
+          </picture>
+        </v-row>
+        <h1 class="title">
+          {{ title }}
+        </h1>
+        <p class="publishedAd">
+          {{ publishedAt }}
+        </p>
+        <div class="post">
+          <Post :body="body" />
+        </div>
+      </v-container>
+    </v-main>
   </v-app>
 </template>
 
