@@ -63,14 +63,14 @@ export default Vue.extend({
       }
     )
     const $ = cheerio.load(data.body)
-    const headings = $('h1, h2, h3').toArray()
-    const toc = headings.map((d) => {
-      return {
-        text: d.children[0].data,
-        id: d.attribs.id,
-        name: d.name,
-      }
-    })
+    // const headings = $('h1, h2, h3').toArray()
+    // const toc = headings.map((d) => {
+    //   return {
+    //     text: d.children[0].data,
+    //     id: d.attribs.id,
+    //     name: d.name,
+    //   }
+    // })
     $('pre code').each((_, elm) => {
       const res = hljs.highlightAuto($(elm).text())
       $(elm).html(res.value)
@@ -84,7 +84,6 @@ export default Vue.extend({
     return {
       ...data,
       body: $.html(),
-      toc
     } 
   }
 })
