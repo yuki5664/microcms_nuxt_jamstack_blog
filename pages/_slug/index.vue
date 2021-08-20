@@ -49,6 +49,8 @@
 
 <script lang="ts">
 import axios from 'axios'
+import cheerio from 'cheerio'
+import hljs from 'highlight.js'
 import Vue from 'vue'
 import { Context } from '@nuxt/types'
 
@@ -60,7 +62,30 @@ export default Vue.extend({
         headers: {'x-api-key': $config.apiKey }
       }
     )
-    return data
+    const $ = cheerio.load(data.body)
+    const headings = $('h1, h2, h3').toArray()
+    const toc = headings.map((d) => {
+      return {
+        text: d.children[0].data,
+        id: d.attribs.id,
+        name: d.name,
+      }
+    })
+    $('pre code').each((_, elm) => {
+      const res = hljs.highlightAuto($(elm).text())
+      $(elm).html(res.value)
+      $(elm).addClass('hljs')
+    })
+    $('img').each((_, elm) => {
+      $(elm).attr('class', 'lazyload')
+      $(elm).attr('data-src', elm.attribs.src)
+      $(elm).removeAttr('src')
+    })
+    return {
+      ...data,
+      body: $.html(),
+      toc
+    } 
   }
 })
 </script>
