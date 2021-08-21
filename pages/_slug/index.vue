@@ -79,7 +79,7 @@ export default Vue.extend({
     $('img').each((_, elm) => {
       $(elm).attr('class', 'lazyload')
       $(elm).attr('data-src', elm.attribs.src)
-      $(elm).removeAttr('src')
+      // $(elm).removeAttr('src') //画像が反映されないので一時的にコメントアウト
     })
     return {
       ...data,
