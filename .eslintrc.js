@@ -17,6 +17,7 @@ module.exports = {
   plugins: ['nuxt'],
   rules: {
     semi: [2, 'never'],
+    'vue/no-v-html': 'off'
     // 'no-console': 'off',
     // 'vue/max-attributes-per-line': 'off',
     // 'vue/html-self-closing': 'off' //空タグを許可する

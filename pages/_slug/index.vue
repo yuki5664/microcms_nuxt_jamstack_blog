@@ -4,11 +4,21 @@
     <v-main class="main">
       <v-container>
         <v-row>
+          <p class="text-h5 mb-4 mt-12 mx-auto">
+            {{ publishedAt | dateFilter }}
+          </p>
+        </v-row>
+        <v-row>
+          <h1 class="text-h2 mb-4 mx-auto">
+            {{ title }}
+          </h1>
+        </v-row>
+        <v-row>
           <picture v-if="ogimage" class="mx-auto">
             <source
               media="(min-width: 1160px)"
               type="image/webp"
-              :srcset="`${ogimage.url}?w=820&fm=webp, ${ogimage.url}?w=1640&fm=webp 2x`"
+              :srcset="`${ogimage.url}?w=820&fm=webp, ${ogimage.url}?w=2000&fm=webp 2x`"
             />
             <source
               media="(min-width: 820px)"
@@ -33,12 +43,6 @@
             />
           </picture>
         </v-row>
-        <h1 class="title">
-          {{ title }}
-        </h1>
-        <p class="publishedAd">
-          {{ publishedAt }}
-        </p>
         <div class="post">
           <Post :body="body" />
         </div>
@@ -49,12 +53,18 @@
 
 <script lang="ts">
 import axios from 'axios'
+import moment from 'moment'
 import cheerio from 'cheerio'
 import hljs from 'highlight.js'
 import Vue from 'vue'
 import { Context } from '@nuxt/types'
 
 export default Vue.extend({
+  filters: {
+    dateFilter(date: string): string {
+      return moment(date).format('YYYY/MM/DD')
+    }
+  },
   async asyncData({ params, $config }: Context) {
     const { data } = await axios.get(
       `https://${$config.serviceId}.microcms.io/api/v1/blog/${params.slug}`,

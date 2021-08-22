@@ -1,6 +1,10 @@
 <template>
   <v-contaniner>
-    <div class="post" v-html="body"></div>
+    <v-row>
+      <v-col cols="10" class="mx-auto">
+        <div class="post" v-html="body"></div>
+      </v-col>
+    </v-row>
   </v-contaniner>
 </template>
 
@@ -96,7 +100,7 @@ export default {
     }
 
     & >>> img {
-      max-width: 100%;
+      max-width: 80%;
       margin: 40px 0;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
