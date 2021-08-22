@@ -1,24 +1,70 @@
 <template>
   <v-app>
     <Header />
-    <main class="main">
-      <h1 class="title">
-        {{ title }}
-      </h1>
-      <p class="publishedAd">
-        {{ publishedAt }}
-      </p>
-      <div class="post"></div>
-    </main>
+    <v-main class="main">
+      <v-container>
+        <v-row>
+          <p class="text-h5 mb-4 mt-12 mx-auto">
+            {{ publishedAt | dateFilter }}
+          </p>
+        </v-row>
+        <v-row>
+          <h1 class="text-h2 mb-4 mx-auto">
+            {{ title }}
+          </h1>
+        </v-row>
+        <v-row>
+          <picture v-if="ogimage" class="mx-auto">
+            <source
+              media="(min-width: 1160px)"
+              type="image/webp"
+              :srcset="`${ogimage.url}?w=820&fm=webp, ${ogimage.url}?w=2000&fm=webp 2x`"
+            />
+            <source
+              media="(min-width: 820px)"
+              type="image/webp"
+              :srcset="`${ogimage.url}?w=740&fm=webp, ${ogimage.url}?w=1480&fm=webp 2x`"
+            />
+            <source
+              media="(min-width: 768px)"
+              type="image/webp"
+              :srcset="`${ogimage.url}?w=728&fm=webp, ${ogimage.url}?w=1456&fm=webp 2x`"
+            />
+            <source
+              media="(max-width: 768px)"
+              type="image/webp"
+              :srcset="`${ogimage.url}?w=375&fm=webp, ${ogimage.url}?w=750&fm=webp 2x`"
+            />
+            <img
+              ref="ogimage"
+              :src="ogimage.url + '?w=820&q=100'"
+              class="ogimage"
+              alt
+            />
+          </picture>
+        </v-row>
+        <div class="post">
+          <Post :body="body" />
+        </div>
+      </v-container>
+    </v-main>
   </v-app>
 </template>
 
 <script lang="ts">
 import axios from 'axios'
+import moment from 'moment'
+import cheerio from 'cheerio'
+import hljs from 'highlight.js'
 import Vue from 'vue'
 import { Context } from '@nuxt/types'
 
 export default Vue.extend({
+  filters: {
+    dateFilter(date: string): string {
+      return moment(date).format('YYYY/MM/DD')
+    }
+  },
   async asyncData({ params, $config }: Context) {
     const { data } = await axios.get(
       `https://${$config.serviceId}.microcms.io/api/v1/blog/${params.slug}`,
@@ -26,7 +72,29 @@ export default Vue.extend({
         headers: {'x-api-key': $config.apiKey }
       }
     )
-    return data
+    const $ = cheerio.load(data.body)
+    // const headings = $('h1, h2, h3').toArray()
+    // const toc = headings.map((d) => {
+    //   return {
+    //     text: d.children[0].data,
+    //     id: d.attribs.id,
+    //     name: d.name,
+    //   }
+    // })
+    $('pre code').each((_, elm) => {
+      const res = hljs.highlightAuto($(elm).text())
+      $(elm).html(res.value)
+      $(elm).addClass('hljs')
+    })
+    $('img').each((_, elm) => {
+      $(elm).attr('class', 'lazyload')
+      $(elm).attr('data-src', elm.attribs.src)
+      // $(elm).removeAttr('src') //画像が反映されないので一時的にコメントアウト
+    })
+    return {
+      ...data,
+      body: $.html(),
+    } 
   }
 })
 </script>
