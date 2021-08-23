@@ -45,6 +45,10 @@
         </v-row>
         <div class="post">
           <Post :body="body" />
+          <RelatedBlogs
+            v-if="related_blogs.length > 0"
+            :blogs="related_blogs"
+          />
         </div>
       </v-container>
     </v-main>
