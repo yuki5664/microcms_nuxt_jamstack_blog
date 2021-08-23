@@ -81,6 +81,7 @@ export default Vue.extend({
     //     name: d.name,
     //   }
     // })
+    // TODO: highlight.jsが機能するようにする
     $('pre code').each((_, elm) => {
       const res = hljs.highlightAuto($(elm).text())
       $(elm).html(res.value)
