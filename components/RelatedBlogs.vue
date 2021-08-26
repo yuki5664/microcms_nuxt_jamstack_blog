@@ -22,6 +22,9 @@
                   <v-card-title>
                     {{ blog.title }}
                   </v-card-title>
+                  <v-card-text>
+                    {{ blog.description}}
+                  </v-card-text>
                 </v-col>
               </v-row>
                 <!-- <Meta

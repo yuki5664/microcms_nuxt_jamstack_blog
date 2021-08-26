@@ -46,6 +46,9 @@
                       <v-card-title>
                         {{ content.title }}
                       </v-card-title>
+                      <v-card-text>
+                        {{ content.description}}
+                      </v-card-text>
                     </v-col>
                   </v-row>
                 </v-container>
