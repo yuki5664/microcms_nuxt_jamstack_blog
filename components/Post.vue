@@ -1,11 +1,11 @@
 <template>
-  <v-contaniner>
+  <v-container>
     <v-row>
       <v-col cols="10" class="mx-auto">
         <div class="post" v-html="body"></div>
       </v-col>
     </v-row>
-  </v-contaniner>
+  </v-container>
 </template>
 
 <script>

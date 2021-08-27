@@ -29,7 +29,10 @@
                 class="c-p"
               >
                 <v-container>
-                  <p> {{ content.publishedAt | dateFilter }} </p>
+                  <Meta 
+                    :created-at="content.publishedAt || content.createdAt"
+                    :category="content.category"
+                  />
                   <v-row>
                     <v-col cols="4">
                       <picture v-if="content.ogimage">
@@ -46,6 +49,9 @@
                       <v-card-title>
                         {{ content.title }}
                       </v-card-title>
+                      <v-card-text>
+                        {{ content.description}}
+                      </v-card-text>
                     </v-col>
                   </v-row>
                 </v-container>
@@ -71,16 +77,10 @@
 
 <script lang="ts">
 import axios from 'axios'
-import moment from 'moment'
 import Vue from 'vue'
 import { Context } from '@nuxt/types'
 
 export default Vue.extend({
-  filters: {
-    dateFilter(date: string): string {
-      return moment(date).format('YYYY/MM/DD')
-    }
-  },
   async asyncData({params, $config}: Context) {
     const page: any = params.p || '1'
     const categoryId = params.categoryId
