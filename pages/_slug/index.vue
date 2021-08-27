@@ -5,7 +5,10 @@
       <v-container>
         <v-row>
           <p class="text-h5 mb-4 mt-12 mx-auto">
-            {{ publishedAt | dateFilter }}
+            <Meta 
+              :created-at="publishedAt || blog.createdAt"
+              :category="category"
+            />
           </p>
         </v-row>
         <v-row>
@@ -57,18 +60,12 @@
 
 <script lang="ts">
 import axios from 'axios'
-import moment from 'moment'
 import cheerio from 'cheerio'
 import hljs from 'highlight.js'
 import Vue from 'vue'
 import { Context } from '@nuxt/types'
 
 export default Vue.extend({
-  filters: {
-    dateFilter(date: string): string {
-      return moment(date).format('YYYY/MM/DD')
-    }
-  },
   async asyncData({ params, $config }: Context) {
     const { data } = await axios.get(
       `https://${$config.serviceId}.microcms.io/api/v1/blog/${params.slug}`,

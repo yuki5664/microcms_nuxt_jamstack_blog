@@ -4,6 +4,10 @@
       <v-card v-for="blog in blogs" :key="blog.id" class="mb-6 hover">
         <nuxt-link :to="`/${blog.id}`" class="c-p" tag="dev">
           <v-container>
+            <Meta 
+              :created-at="blog.publishedAt || blog.createdAt"
+              :category="blog.category"
+            />
             <v-row>
               <v-col cols="4">
                 <picture>
