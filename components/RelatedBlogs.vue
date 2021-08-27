@@ -2,7 +2,7 @@
   <v-container>
     <h2 class="pageTitle">関連記事</h2>
       <v-card v-for="blog in blogs" :key="blog.id" class="mb-6 hover">
-        <nuxt-link :to="`/${blog.id}`" class="c-p" tag="dev">
+        <nuxt-link :to="`/${blog.id}`" class="c-p" tag="div">
           <v-container>
             <Meta 
               :created-at="blog.publishedAt || blog.createdAt"
