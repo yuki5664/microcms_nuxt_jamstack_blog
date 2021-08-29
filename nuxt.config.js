@@ -98,14 +98,39 @@ export default {
     // },
 
   generate: {
+    interval: 100,
     async routes() {
-      const limit = 10
+      const limit = 50
       const range = (start, end) =>
         [...Array(end - start + 1)].map((_, i) => start + i)
 
+      // 詳細ページ
+      const getArticles = (offset = 0) => {
+        return axios
+          .get(
+            `https://${process.env.SERVICE_ID}.microcms.io/api/v1/blog?offset=${offset}&limit=${limit}&depth=2`,
+            {
+              headers: { 'X-API-KEY': process.env.API_KEY },
+            }
+          )
+          .then(async (res) => {
+            let articles = []
+            if (res.data.totalCount > offset + limit) {
+              articles = await getArticles(offset + limit)
+            }
+            return [
+              ...res.data.contents.map((content) => ({
+                route: `/${content.id}`,
+              })),
+              ...articles,
+            ]
+          })
+      }
+      const articles = await getArticles()
+
       // 一覧のページング
       const pages = await axios
-        .get(`https://your-service-id.microcms.io/api/v1/blog?limit=0`, {
+        .get(`https://${process.env.SERVICE_ID}.microcms.io/api/v1/blog?limit=0`, {
           headers: { 'X-API-KEY': process.env.API_KEY },
         })
         .then((res) =>
@@ -115,8 +140,8 @@ export default {
         )
 
         const categories = await axios
-        .get(`https://your-service-id.microcms.io/api/v1/categories?fields=id`, {
-          headers: { 'X-API-KEY': 'your-api-key' },
+        .get(`https://${process.env.SERVICE_ID}.microcms.io/api/v1/categories?fields=id`, {
+          headers: { 'X-API-KEY': process.env.API_KEY },
         })
         .then(({ data }) => {
           return data.contents.map((content) => content.id)
@@ -126,7 +151,7 @@ export default {
         const categoryPages = await Promise.all(
           categories.map((category) =>
             axios.get(
-              `https://your-service-id.microcms.io/api/v1/blog?limit=0&filters=category[equals]${category}`,
+              `https://${process.env.SERVICE_ID}.microcms.io/api/v1/blog?limit=0&filters=category[equals]${category}`,
               { headers: { 'X-API-KEY': process.env.API_KEY } }
             )
               .then((res) =>
@@ -138,7 +163,8 @@ export default {
 
       // 2次元配列になってるのでフラットにする
       const flattenCategoryPages = [].concat.apply([], categoryPages)
-      return [...pages, ...flattenCategoryPages]
+      return [...pages, ...flattenCategoryPages, ...articles]
     },
+    dir: 'dist'
   },
 }
