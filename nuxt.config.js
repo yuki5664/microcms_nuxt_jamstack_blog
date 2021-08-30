@@ -28,15 +28,39 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'microcms-nuxt-jamstack-blog',
+    title: 'タナカ ユウキのポートレートサイト',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'ja'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
+      { hid: 'description', name: 'description', content: 'エンジニア タナカ ユウキのポートレートサイトです。タナカ ユウキのIT・プログラミングなどの仕事やライフスタイル、価値観について発信するブログです。' },
+      { name: 'format-detection', content: 'telephone=no' },
+      {
+        hid: 'og:site_name',
+        property: 'og:site_name',
+        content: 'タナカ ユウキのポートレートサイト',
+      },
+      { hid: 'og:type', property: 'og:type', content: 'website' },
+      {
+        hid: 'og:url',
+        property: 'og:url',
+        content: 'https://yuki-tanaka-portalsite.netlify.app',
+      },
+      { hid: 'og:title', property: 'og:title', content: 'タナカ ユウキのポートレートサイト' },
+      {
+        hid: 'og:description',
+        property: 'og:description',
+        content:
+          'エンジニア タナカ ユウキのポートレートサイトです。タナカ ユウキのIT・プログラミングなどの仕事やライフスタイル、価値観について発信するブログです。',
+      },
+      {
+        hid: 'og:image',
+        property: 'og:image',
+        content: 'https://yuki-tanaka-portalsite.netlify.app/images/title_logo.png',
+      },
+      { name: 'twitter:card', content: 'summary' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
