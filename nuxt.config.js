@@ -4,6 +4,12 @@ export default {
   publicRuntimeConfig: {
     apiKey: process.env.NODE_ENV !== 'production' ? process.env.API_KEY : undefined,
     serviceId: process.env.NODE_ENV !== 'production' ? process.env.SERVICE_ID : undefined,
+    publicRuntimeConfig: {
+    googleAnalytics: {
+      id: process.env.GOOGLE_ANALYTICS_ID
+    }
+  }
+
   },
   privateRuntimeConfig: {
     apiKey: process.env.API_KEY,
@@ -75,7 +81,8 @@ export default {
 
   buildModules: [
     '@nuxt/typescript-build',
-    '@nuxtjs/vuetify'
+    '@nuxtjs/vuetify',
+    '@nuxtjs/google-analytics'
   ],
 
   typescript: {
