@@ -87,7 +87,12 @@ export default {
   },
 
   modules: [
+    '@nuxtjs/google-gtag'
   ],
+  'google-gtag': {
+    id: process.env.GOOGLE_ANALYTICS_ID,
+    debug: true, // Enable to track in dev mode.
+  },
 
   build: {
     postcss: {
