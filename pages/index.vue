@@ -16,7 +16,7 @@
           記事がありません
         </div>
         <v-row class="my-6">
-          <v-col cols="9">
+          <v-col cols="12" sm="9">
             <v-card
               v-for="content in contents"
               :key="content.id"
@@ -34,18 +34,44 @@
                     :category="content.category"
                   />
                   <v-row>
-                    <v-col cols="4">
+                    <v-col cols="12" sm="4">
                       <picture v-if="content.ogimage">
-                        <v-img
+                        <!-- <v-img
                           :src="content.ogimage.url"
                           class="ogimage m-6"
                           max-height="100"
                           max-width="200"
                           alt=""
+                        /> -->
+                        <source
+                          media="(min-width: 1160px)"
+                          type="image/webp"
+                          :srcset="`${content.ogimage.url}?w=400&fm=webp, ${content.ogimage.url}?w=400&fm=webp 2x`"
+                        />
+                        <source
+                          media="(min-width: 820px)"
+                          type="image/webp"
+                          :srcset="`${content.ogimage.url}?w=400&fm=webp, ${content.ogimage.url}?w=400&fm=webp 2x`"
+                        />
+                        <source
+                          media="(min-width: 768px)"
+                          type="image/webp"
+                          :srcset="`${content.ogimage.url}?w=350&fm=webp, ${content.ogimage.url}?w=350&fm=webp 2x`"
+                        />
+                        <source
+                          media="(max-width: 768px)"
+                          type="image/webp"
+                          :srcset="`${content.ogimage.url}?w=375&fm=webp, ${content.ogimage.url}?w=750&fm=webp 2x`"
+                        />
+                        <img
+                          ref="ogimage"
+                          :src="content.ogimage.url + '?w=820&q=100'"
+                          class="ogimage"
+                          alt
                         />
                       </picture>
                     </v-col>
-                    <v-col cols="8">
+                    <v-col cols="12" sm="8">
                       <v-card-title>
                         {{ content.title }}
                       </v-card-title>
@@ -64,7 +90,7 @@
               :category="selectedCategory"
             />
           </v-col>
-          <v-col cols="3">
+          <v-col cols="12" sm="3">
             <aside>
               <Categories :categories="categories" />
             </aside>
