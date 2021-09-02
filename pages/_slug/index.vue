@@ -12,7 +12,7 @@
           </p>
         </v-row>
         <v-row>
-          <h1 class="text-h2 mb-4 mx-auto">
+          <h1 class="mb-4 mx-auto">
             {{ title }}
           </h1>
         </v-row>
@@ -100,3 +100,18 @@ export default Vue.extend({
   }
 })
 </script>
+
+<style scoped>
+@media (min-width: 600px) {
+  h1 { 
+    font-size: 34px;
+  }
+}
+
+@media (max-width: 600px) {
+  h1 { 
+    font-size: 22px;
+  }
+}
+
+</style>
