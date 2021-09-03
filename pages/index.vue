@@ -61,7 +61,7 @@
                         <source
                           media="(max-width: 768px)"
                           type="image/webp"
-                          :srcset="`${content.ogimage.url}?w=375&fm=webp, ${content.ogimage.url}?w=750&fm=webp 2x`"
+                          :srcset="`${content.ogimage.url}?w=375&fm=webp, ${content.ogimage.url}?w=600&fm=webp 2x`"
                         />
                         <img
                           ref="ogimage"
