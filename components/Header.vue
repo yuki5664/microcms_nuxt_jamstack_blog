@@ -22,7 +22,7 @@
         <v-tab
           v-for="link in links"
           :key="link.title"
-          :to="`/` + `${link.title !== 'Blog' ? link.title : ``}`"
+          :to="`/` + `${link.path}`"
           :nuxt="true">
           {{ link.title }}
         </v-tab>
@@ -52,7 +52,7 @@
           <v-list-item
             v-for="link in links"
             :key="link.title"
-            :to="`/` + `${link.title !== 'Blog' ? link.title : ``}`"
+            :to="`/` + link.url"
             :nuxt="true"
           >
           <v-icon>
@@ -85,9 +85,9 @@ export default Vue.extend({
   data () {
     return {
       links: [
-        { title: 'Blog', icon: 'mdi-account-edit-outline' },
-        { title: 'Profile', icon: 'mdi-account-circle-outline' },
-        { title: 'Message', icon: 'mdi-forum' }
+        { title: 'Blog', icon: 'mdi-account-edit-outline', path: `` },
+        { title: 'Profile', icon: 'mdi-account-circle-outline', path: 'dwos7kgllav' },
+        { title: 'Message', icon: 'mdi-forum', path: 'Message' }
       ],
       drawer: false
     }
