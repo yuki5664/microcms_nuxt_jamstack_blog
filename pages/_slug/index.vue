@@ -54,6 +54,7 @@
           />
         </div>
       </v-container>
+      <Footer />
     </v-main>
   </v-app>
 </template>
