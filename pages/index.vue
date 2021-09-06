@@ -97,6 +97,7 @@
           </v-col>
         </v-row>
       </v-container>
+      <Footer />
     </v-main>
   </v-app>
 </template>
