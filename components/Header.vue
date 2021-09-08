@@ -52,7 +52,7 @@
           <v-list-item
             v-for="link in links"
             :key="link.title"
-            :to="`/` + link.url"
+            :to="`/` + `${link.path}`"
             :nuxt="true"
           >
           <v-icon>
