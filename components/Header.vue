@@ -8,11 +8,11 @@
       <!-- モバイル時のみ表示(レスポンシブ -->
       <v-app-bar-nav-icon class="hidden-sm-and-up" @click="drawer = true"></v-app-bar-nav-icon>
       <nuxt-link :to="`/`">
-        <img src="images/title_logo_mobile.png" alt="" width="170" height="70" class="mt-6 ml-10 hidden-sm-and-up">
+        <img src="/images/title_logo_mobile.png" alt="" width="170" height="70" class="mt-6 ml-10 hidden-sm-and-up">
       </nuxt-link>
       <!-- PC時のみ表示(レスポンシブ) -->
       <nuxt-link :to="`/`">
-        <img src="images/title_logo.png" alt="" width="100" height="100" class="mt-10 hidden-xs-only">
+        <img src="/images/title_logo.png" alt="" width="100" height="100" class="mt-10 hidden-xs-only">
       </nuxt-link>
       <v-tabs
         centered
