@@ -26,19 +26,19 @@ export default {
   target: 'static',
 
   head: {
-    title: 'タナカ ユウキのポートレートサイト',
+    title: 'タナカ ユウキのポータルサイト',
     htmlAttrs: {
       lang: 'ja'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'エンジニア タナカ ユウキのポートレートサイトです。タナカ ユウキのIT・プログラミングなどの仕事やライフスタイル、価値観について発信するブログです。' },
+      { hid: 'description', name: 'description', content: 'エンジニア タナカ ユウキのポータルサイトです。タナカ ユウキのIT・プログラミングなどの仕事やライフスタイル、価値観について発信するサイトです。' },
       { name: 'format-detection', content: 'telephone=no' },
       {
         hid: 'og:site_name',
         property: 'og:site_name',
-        content: 'タナカ ユウキのポートレートサイト',
+        content: 'タナカ ユウキのポータルサイト',
       },
       { hid: 'og:type', property: 'og:type', content: 'website' },
       {
@@ -46,12 +46,12 @@ export default {
         property: 'og:url',
         content: 'https://yuki-tanaka-portalsite.netlify.app',
       },
-      { hid: 'og:title', property: 'og:title', content: 'タナカ ユウキのポートレートサイト' },
+      { hid: 'og:title', property: 'og:title', content: 'タナカ ユウキのポータルサイト' },
       {
         hid: 'og:description',
         property: 'og:description',
         content:
-          'エンジニア タナカ ユウキのポートレートサイトです。タナカ ユウキのIT・プログラミングなどの仕事やライフスタイル、価値観について発信するブログです。',
+          'エンジニア タナカ ユウキのポータルサイトです。タナカ ユウキのIT・プログラミングなどの仕事やライフスタイル、価値観について発信するサイトです。',
       },
       {
         hid: 'og:image',
