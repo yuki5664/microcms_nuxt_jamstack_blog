@@ -1,5 +1,7 @@
 # タナカ ユウキのポータルサイト
 
+<img width="1676" alt="blog_screen" src="https://user-images.githubusercontent.com/60835765/134660487-4e899857-acc0-469b-bade-dc0ba0d2396a.png">
+
 ## 機能
 - 記事一覧
 - カテゴリー別記事一覧
