@@ -86,7 +86,7 @@ export default Vue.extend({
     return {
       links: [
         { title: 'Blog', icon: 'mdi-account-edit-outline', path: `` },
-        { title: 'Profile', icon: 'mdi-account-circle-outline', path: 'dwos7kgllav' },
+        { title: 'Profile', icon: 'mdi-account-circle-outline', path: 'profile' },
         { title: 'Message', icon: 'mdi-forum', path: 'Message' }
       ],
       drawer: false
