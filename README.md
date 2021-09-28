@@ -25,14 +25,14 @@ https://yuki-tanaka-portalsite.netlify.app/
 ## 環境変数
 プロジェクトルートに.envファイルを作成し、以下の項目を設定してください。
 
-API_KEY（microCMSのAPIキー）
-SERVICE_ID（microCMSのサービスID）
-GA_ID（Google AnalyticsのID）※アナリティクスで情報を収集したい場合
-例:
+API_KEY（microCMSのAPIキー）  
+SERVICE_ID（microCMSのサービスID）  
+OOGLE_ANALYTICS_ID（Google AnalyticsのID）※アナリティクスで情報を収集したい場合
+例:  
 
-API_KEY=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-SERVICE_ID=your-service-id
-GOOGLE_ANALYTICS_ID=UA-xxxxxxxxx-x
+API_KEY=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  
+SERVICE_ID=your-service-id  
+GOOGLE_ANALYTICS_ID=UA-xxxxxxxxx-x  
 
 
 ## 開発環境構築手順
